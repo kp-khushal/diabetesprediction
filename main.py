@@ -73,17 +73,19 @@ residuals = y_test-reg_pred
 score = r2_score(y_test,reg_pred)
 # print(score)
 
-# print(1 - (1-score)*(len(y_test)-1)/(len(y_test)-x_test.shape[1]-1))
+1 - (1-score)*(len(y_test)-1)/(len(y_test)-x_test.shape[1]-1)
 
-# print(cancer.data[0].reshape(1,-1))
+cancer.data[0].reshape(1,-1)
+
 scaler.transform(cancer.data[0].reshape(1,-1))
 
-regression.predict(cancer.data[0].reshape(1,-1))
+# regression.predict(cancer.data[0].reshape(1,-1))
 
+regression.predict(scaler.transform(cancer.data[0].reshape(1,-1)))
 
-pickle.dump(regression,open('regmodel.pkl','wb'))
+pickle.dump(regression,open('scaling.pkl','wb'))
 
-pickle_model =  pickle.load(open('regmodel.pkl','rb'))
+pickle_model =  pickle.load(open('scaling.pkl','rb'))
 print(regression.predict(cancer.data[0].reshape(1,-1)))
 
 
